@@ -2,8 +2,6 @@ import React from "react";
 import style from "./UserForm.module.css";
 import { Button, Form, Input, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import qs from 'qs';
 
 /* eslint-disable no-template-curly-in-string */
 const validateMessages = {
@@ -23,43 +21,14 @@ const validateBio = (_, value) => {
   return Promise.resolve();
 };
 
+
 const UserForm = () => {
 
   // const [userData, setUserData] = useState({});
 
-
-
   const navigate = useNavigate();
 
-  // const paraphraseParagraph = async (paragraph) => {
-  //   let data = qs.stringify({
-  //     'text': paragraph
-  //   });
-
-  //   let config = {
-  //     method: 'post',
-  //     maxBodyLength: Infinity,
-  //     url: 'https://tinq.ai/api/v1/rewrite',
-  //     headers: {
-  //       'Authorization': 'Bearer key-9d90bfdf-c3b6-4abf-9af0-f93f5d2c04cd-641c5ab15bd7e',
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     },
-  //     data: data
-  //   };
-
-  //   axios.request(config)
-  //     .then((response) => {
-  //       console.log(JSON.stringify(response.data));
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-
-  // }
-
-  const onFinish = (values) => {
-    // const paraphrased = paraphraseParagraph(values.user.introduction);
-    // console.log(paraphrased);
+  const onFinish = async (values) => {
     navigate('/pdf', { state: { userData: values } });
   };
 
@@ -81,10 +50,10 @@ const UserForm = () => {
           <Form.Item
             name={['user', 'name']}
             label="Name"
-            rules={[
-              {
-                required: true,
-              },
+            rules={[{ required: true, }, {
+              pattern: /^[a-zA-Z\s]*$/,
+              message: 'Name must contain letters only!',
+            },
             ]}
           >
             <Input />
@@ -104,10 +73,10 @@ const UserForm = () => {
           <Form.Item
             name={['user', 'mobileNumber']}
             label="Mobile Number"
-            rules={[
-              {
-                required: true,
-              },
+            rules={[{ required: true, }, {
+              pattern: /^[0-9]*$/,
+              message: 'Mobile number must contain digits only!',
+            },
             ]}>
             <Input />
           </Form.Item>
