@@ -1,0 +1,38 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+/* @media screen and (max-width: 992px) {
+  .container {
+    width: 50%;
+  }
+} */
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media (max-width: 992px) {
+  .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+}
+
+.form {
+  border: 1px solid #d9d9d9;
+  padding: 20px;
+  border-radius: 5px;
+  width: 800px;
+}
+
+.card {
+  width: 100%;
+}
+
+
+
